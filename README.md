@@ -92,7 +92,7 @@ Description: Run the client on a spot instance
 
 Type: `bool`
 
-Default: `false`
+Default: `true`
 
 ## Outputs
 

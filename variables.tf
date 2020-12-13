@@ -40,7 +40,7 @@ variable "cfengine_deb_package_version" {
 
 variable "spot_instance" {
   description = "Run the client on a spot instance"
-  default     = false
+  default     = true
 }
 
 variable "ami_id" {
