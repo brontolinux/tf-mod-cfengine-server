@@ -1,9 +1,9 @@
 /*
 * # tf-mod-cfengine-server
 *
-* Creates an internet-facing CFEngine server in AWS.
+* Creates an internet-facing CFEngine server in AWS. This module creates a CFEngine server running in AWS on a Debian 10 instance. Spot instances are supported.
 *
-* This module creates a CFEngine server running in AWS on a Debian 10 instance. Spot instances are supported. The server is created in the named public subnet and associated with an elastic IP.
+* See the [ARCHITECTURE document](ARCHITECTURE.md) for details.
 */
 
 ########################################################################

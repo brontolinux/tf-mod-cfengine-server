@@ -14,7 +14,7 @@ output "security_group_id" {
 }
 
 output "debian_ami_id" {
-  description = "Id of the latest AMI of Debian 10 for amd64 processors"
+  description = "Id of the latest AMI of Debian 10 for amd64 processors (this is always the ID of the latest AMI, no matter how you set in the ami_id input variable)"
   value = data.aws_ami.debian_official.id
 }
 
@@ -34,12 +34,12 @@ output "private_ip" {
 }
 
 output "ssh_command" {
-  description = "Command to run to connect to the instance via SSH"
+  description = "SSH command to run to connect to the instance via SSH"
   value = "ssh admin@${aws_eip.cfengine.public_dns}"
 }
 
 output "spot_instance_request_id" {
-  description = "Spot instance request id (or null if on-demand instances are used)"
+  description = "Spot instance request id (null if on-demand instances are used)"
   value = local.spot_instance_request_id
 }
 

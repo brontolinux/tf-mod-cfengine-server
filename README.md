@@ -1,8 +1,8 @@
 # tf-mod-cfengine-server
 
-Creates an internet-facing CFEngine server in AWS.
+Creates an internet-facing CFEngine server in AWS. This module creates a CFEngine server running in AWS on a Debian 10 instance. Spot instances are supported.
 
-This module creates a CFEngine server running in AWS on a Debian 10 instance. Spot instances are supported. The server is created in the named public subnet and associated with an elastic IP.
+See the [ARCHITECTURE document](ARCHITECTURE.md) for details.
 
 ## Requirements
 
@@ -40,7 +40,7 @@ Type: `string`
 
 ### instance\_sg\_name
 
-Description: Name tag for the security group that applies to the instance
+Description: Value of the Name tag for the security group that applies to the instance (used to look up the security group for the instance, must be unique)
 
 Type: `string`
 
@@ -52,19 +52,19 @@ Type: `string`
 
 ### mount\_sg\_name
 
-Description: Name tag for the security group that applies to the mount target
+Description: Value of the Name tag for the security group that applies to the EFS mount targets (used to look up the security group for the EFS mount targets, must be unique)
 
 Type: `string`
 
 ### priv\_subnet\_name
 
-Description: Value of the Name tag for the private subnet (must be unique)
+Description: Value of the Name tag for the private subnet (used to look up the private subnet for the instance, must be unique)
 
 Type: `string`
 
 ### pub\_subnet\_name
 
-Description: Value of the Name tag for the public subnet (must be unique)
+Description: Value of the Name tag for the public subnet (used to look up the public subnet for the instance, must be unique)
 
 Type: `string`
 
@@ -80,7 +80,7 @@ The following input variables are optional (have default values):
 
 ### ami\_id
 
-Description: Set to 'latest' to use the latest, or specify an AMI ID
+Description: Set to 'latest' to use the latest official Debian 'buster' AMI, or specify an AMI ID to use a different one
 
 Type: `string`
 
@@ -100,7 +100,7 @@ The following outputs are exported:
 
 ### debian\_ami\_id
 
-Description: Id of the latest AMI of Debian 10 for amd64 processors
+Description: Id of the latest AMI of Debian 10 for amd64 processors (this is always the ID of the latest AMI, no matter how you set in the ami\_id input variable)
 
 ### eip\_address
 
@@ -132,9 +132,9 @@ Description: Id of the security group for the instance (calculated from the secu
 
 ### spot\_instance\_request\_id
 
-Description: Spot instance request id (or null if on-demand instances are used)
+Description: Spot instance request id (null if on-demand instances are used)
 
 ### ssh\_command
 
-Description: Command to run to connect to the instance via SSH
+Description: SSH command to run to connect to the instance via SSH
 
