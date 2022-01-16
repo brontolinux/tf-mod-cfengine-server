@@ -34,7 +34,7 @@ data "aws_security_group" "mount_target" {
 # Official Debian 10 AMI, latest
 data "aws_ami" "debian_official" {
   most_recent = true
-  name_regex  = "^debian-10-amd64-.+"
+  name_regex  = "^debian-11-amd64-.+"
 
   # Owner of official debian 10 AMIs
   # See https://wiki.debian.org/Cloud/AmazonEC2Image/Buster
