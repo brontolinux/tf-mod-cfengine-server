@@ -174,6 +174,10 @@ resource "aws_spot_instance_request" "cfengine" {
 
   valid_until = local.spot_request_expiration
 
+  root_block_device {
+    volume_type = "gp3"
+  }
+
   tags = {
     Name = var.instance_name
   }
@@ -208,6 +212,10 @@ resource "aws_instance" "cfengine" {
   #associate_public_ip_address = false
 
   user_data_base64 = data.template_cloudinit_config.cloud_init.rendered
+
+  root_block_device {
+    volume_type = "gp3"
+  }
 
   tags = {
     Name = var.instance_name
