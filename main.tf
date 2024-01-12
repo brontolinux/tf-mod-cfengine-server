@@ -31,12 +31,12 @@ data "aws_security_group" "mount_target" {
   name = var.mount_sg_name
 }
 
-# Official Debian 10 AMI, latest
+# Official Debian 12 AMI, latest
 data "aws_ami" "debian_official" {
   most_recent = true
-  name_regex  = "^debian-11-amd64-.+"
+  name_regex  = "^debian-12-amd64-.+"
 
-  # Owner of official debian 10 AMIs
+  # Owner of official debian AMIs
   # See https://wiki.debian.org/Cloud/AmazonEC2Image/Buster
   owners = ["136693071363"]
 
