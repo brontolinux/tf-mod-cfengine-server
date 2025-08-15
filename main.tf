@@ -53,7 +53,7 @@ data "aws_ami" "debian_official" {
 
 # Render templates for cloud-init
 data "template_file" "cloud_init" {
-  template = file("${path.module}/user_data/cloud-init.tpl")
+  template = file("${path.module}/user_data/cloud-init.tftpl")
 
   vars = {
     instance_name            = var.instance_name
@@ -63,7 +63,7 @@ data "template_file" "cloud_init" {
 }
 
 data "template_file" "init_sh" {
-  template = file("${path.module}/user_data/init.sh.tpl")
+  template = file("${path.module}/user_data/init.sh.tftpl")
 
   vars = {
     package_version = var.cfengine_deb_package_version
