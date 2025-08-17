@@ -14,7 +14,7 @@ output "security_group_id" {
 }
 
 output "debian_ami_id" {
-  description = "Id of the latest AMI of Debian 10 for amd64 processors (this is always the ID of the latest AMI, no matter how you set in the ami_id input variable)"
+  description = "Id of the latest AMI of Debian 13 for amd64 processors (this is always the ID of the latest AMI, no matter how you set in the ami_id input variable)"
   value = data.aws_ami.debian_official.id
 }
 

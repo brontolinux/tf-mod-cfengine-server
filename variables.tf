@@ -40,10 +40,12 @@ variable "cfengine_deb_package_version" {
 
 variable "spot_instance" {
   description = "Run the client on a spot instance"
+  type        = bool
   default     = true
 }
 
 variable "ami_id" {
-  description = "Set to 'latest' to use the latest official Debian 'buster' AMI, or specify an AMI ID to use a different one"
+  description = "Set to 'latest' to use the latest official Debian 13 AMI, or specify an AMI ID to use a different one"
+  type        = string
   default     = "latest"
 }

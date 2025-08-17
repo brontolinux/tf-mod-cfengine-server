@@ -1,6 +1,6 @@
 # tf-mod-cfengine-server
 
-This module creates an internet-facing CFEngine server running in AWS on a Debian 10 instance. Spot instances are supported.
+This module creates an internet-facing CFEngine server running in AWS on a Debian 13 instance. Spot instances are supported.
 
 See the [ARCHITECTURE document](ARCHITECTURE.md) for details.
 
@@ -8,19 +8,15 @@ See the [ARCHITECTURE document](ARCHITECTURE.md) for details.
 
 The following requirements are needed by this module:
 
-- terraform (>= 0.13)
+- terraform (>= 1.11.0)
 
-- aws (~> 3.21.0)
-
-- template (~> 2.2.0)
+- aws (~> 6.0)
 
 ## Providers
 
 The following providers are used by this module:
 
-- aws (~> 3.21.0)
-
-- template (~> 2.2.0)
+- aws (~> 6.0)
 
 ## Required Inputs
 
@@ -80,7 +76,7 @@ The following input variables are optional (have default values):
 
 ### ami\_id
 
-Description: Set to 'latest' to use the latest official Debian 'buster' AMI, or specify an AMI ID to use a different one
+Description: Set to 'latest' to use the latest official Debian 13 AMI, or specify an AMI ID to use a different one
 
 Type: `string`
 
@@ -100,7 +96,7 @@ The following outputs are exported:
 
 ### debian\_ami\_id
 
-Description: Id of the latest AMI of Debian 10 for amd64 processors (this is always the ID of the latest AMI, no matter how you set in the ami\_id input variable)
+Description: Id of the latest AMI of Debian 13 for amd64 processors (this is always the ID of the latest AMI, no matter how you set in the ami\_id input variable)
 
 ### eip\_address
 
