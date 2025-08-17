@@ -31,13 +31,13 @@ data "aws_security_group" "mount_target" {
   name = var.mount_sg_name
 }
 
-# Official Debian 12 AMI, latest
+# Official Debian 13 AMI, latest
 data "aws_ami" "debian_official" {
   most_recent = true
   name_regex  = "^debian-13-amd64-.+"
 
   # Owner of official debian AMIs
-  # See https://wiki.debian.org/Cloud/AmazonEC2Image/Buster
+  # See https://wiki.debian.org/Cloud/AmazonEC2Image/
   owners = ["136693071363"]
 
   filter {
