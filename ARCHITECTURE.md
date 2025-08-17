@@ -20,13 +20,22 @@ The module does **not** provide for the case where the two EFS filesystems are s
 3. the subnets are identified by unique `Name` tags;
 4. a security group applicable to the instance exists **before** the instance is created, and is tagged with a unique `Name` tag;
 5. a security group applicable to the EFS mount targets exists **before** the instance and the mount targets are created, and is tagged with a unique `Name` tag;
-6. the module creates the instance using the latest Debian 10 AMI, unless you specify a different AMI ID; please notice that **the user data assumes a Debian system**: using a Debian derivative **may** work, using non-Debian-based distributions will **not** work;
-7. a functional AWS CLI is required to properly tag spot instances; if the command is not available, the provisioning of the instance will continue, but the instance won't be tagged properly
+6. the module creates the instance using the latest Debian 13 AMI, unless you specify a different AMI ID; please notice that **the user data assumes a Debian system**: using a Debian derivative **may** work, using non-Debian-based distributions will **not** work;
+7. the instance uses cloud-init for initialization, which handles mounting the EFS filesystems and installing CFEngine from the official repository
 
 The mount targets will be created in the private network. This is the reason why the private network must be accessible from the public network. 
 
 The masterfiles are distributed to all clients: **ensure you are protecting the mount targets appropriately**. The security group applied to the mount target must grant only the required access, and only to those instances that need that access.
 
-The spot instance request will expire after six months. New Debian AMIs with security updates are released more or less every three months on average, and replacing a server with a new one is a seamless process thanks to Terraform and this module. Six months should give you plenty of space to recycle existing instances with new ones.
+The spot instance request will expire after six months. New Debian AMIs with security updates are released regularly, and replacing a server with a new one is a seamless process thanks to Terraform and this module. Six months should give you plenty of space to recycle existing instances with new ones.
+
+## Implementation Details
+
+The module uses:
+- **Cloud-init** for instance initialization, including package installation and filesystem mounting
+- **EFS with lifecycle policies** that transition files to Infrequent Access (IA) storage after 30 days to reduce costs  
+- **GP3 volumes** for the root block device to provide better price/performance compared to GP2
+- **Automatic tagging** for spot instances using the `aws_ec2_tag` resource
+- **Template files** for flexible user data generation with instance-specific parameters
 
 
